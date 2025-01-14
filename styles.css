@@ -1,134 +1,126 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
-
 body {
+    background-color: #000;
+    color: #efe9e9;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: url('7ali.png');
+    height: 100vh;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  /* Arrière-plan avec effet de flou */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('7ali.png');
     background-size: cover;
     background-position: center;
-}
-
-
-.profile-card{
+    filter: blur(5px);
+    z-index: 1;
+  }
+  
+  /* Conteneur des icônes proche du centre */
+  .icons {
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    top: 40%; /* Positionnement des icônes à 40% de la hauteur de la fenêtre */
+    left: 50%;
+    transform: translateX(-50%); /* Centrage horizontal */
+    z-index: 2; /* Assure que les icônes sont au-dessus de l'arrière-plan */
+  }
+  
+  /* Style des liens */
+  .icons a {
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 370px;
-    width: 100%;
-    background: rgba(247, 244, 244, 0.5); 
-    border-radius: 24px;
-    padding: 25px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.image{
+  }
+  
+  /* Conteneur des couches */
+  .icons .layer {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
-    background-color: rgb(24, 16, 31);
-    padding: 3px;
-    margin-bottom: 10px;
-}
-
-.image .profile-img{
+    transition: transform 0.3s ease;
+  }
+  
+  /* Effet de hover sur la rotation */
+  .icons a:hover .layer {
+    transform: rotate(-35deg) skew(20deg);
+  }
+  
+  /* Couches multiples pour les effets visuels */
+  .icons .layer span {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
-    border-radius: 50%;
-    border: 3px solid #fff;
-}
-
-.profile-card .text-data{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #161515; 
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); 
-}
-
-.text-data .name{
-    font-size: 22px;
-    font-weight: 500;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); 
-}
-
-.text-data .job{
-    font-size: 15px;
-    font-weight: 400;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); 
-}
-
-.profile-card .media-buttons{
-    display: flex;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.media-buttons .link{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 35px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin: 0 11px;
-    background-color: #0f0e10;
-    text-decoration: none;
-}
-
-.profile-card .buttons{
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-}
-
-.buttons  .buton{ 
-    color: #fff;
+    border: 1px solid #180c0b;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Style des icônes */
+  .icons .layer .fab {
+    font-size: 30px;
+    line-height: 55px;
+    text-align: center;
+    color: #1b0e0a;
+  }
+  
+  /* Effets de transformation sur chaque couche lors du hover */
+  .icons a:hover .layer span:nth-child(1) {
+    opacity: 0.2;
+  }
+  
+  .icons a:hover .layer span:nth-child(2) {
+    opacity: 0.4;
+    transform: translate(5px, -5px);
+  }
+  
+  .icons a:hover .layer span:nth-child(3) {
+    opacity: 0.6;
+    transform: translate(10px, -10px);
+  }
+  
+  .icons a:hover .layer span:nth-child(4) {
+    opacity: 0.8;
+    transform: translate(15px, -15px);
+  }
+  
+  /* Texte sous les icônes */
+  .text {
+    margin-top: 5px;
     font-size: 14px;
-    font-weight: 400;
-    border: none;
-    border-radius: 24px;
-    margin: 0 10px;
-    padding: 8px 24px;
-    background-color: #0e0d0f;
-    cursor: pointer;
-    transform: all 0.3s ease;
-}
-
-.buttons .buton:hover{
-    background-color: #676f8a;
-}
-
-.profile-card .analytics{
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-}
-
-.analytics .data{
-    display: flex;
-    align-items: center;
-    color: #333;
-    padding: 0 20px;
-    border-right: 2px solid #e7e7e7;
-}
-
-.data i{
-    font-size: 18px;
-    margin-right: 6px;
-}
-
-.data:last-child{
-    border-right: none;
-}
+    color: #0f0e0d;
+    text-align: center;
+  }
+  
+  /* Amélioration de la responsivité */
+  @media (max-width: 768px) {
+    .icons .layer {
+        width: 45px;
+        height: 45px;
+    }
+  
+    .icons .layer .fab {
+        font-size: 24px;
+    }
+  
+    .text {
+        font-size: 12px;
+    }
+  }
